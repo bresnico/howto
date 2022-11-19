@@ -91,7 +91,7 @@ Sur les macs, différents ajouts comme Xquartz ou des modules liés à LaTeX son
 
 > Mais honnêtement, on a perdu de vue leur rôle plus ou moins nécessaire sachant que LaTeX est certes nécessaire pour les sorties PDF sans que toutes les extensions liées à LaTex le soient... Ce sera à clarifier au prochain clean install.
 
-Pour la version PC, on a installé tinyTEX 'tinytex::install_tinytex()' directement 'TinyTeX to C:\Users\nbr\AppData\Roaming/TinyTeX' depuis la console. On rappelle que `LaTeX` est nécessaire à la génération de *PDF*.
+Pour la version PC, on a installé tinyTEX 'tinytex::install_tinytex()' directement 'TinyTeX to C:/Users/nbr/AppData/Roaming/TinyTeX' depuis la console. On rappelle que `LaTeX` est nécessaire à la génération de *PDF*.
 
 Dans R, les packages suivants sont installés:
 
