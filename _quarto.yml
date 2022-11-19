@@ -1,15 +1,23 @@
+lang: fr
+
 project:
   type: book
 
 book:
   site-url: "https://howto.nicolasbressoud.ch"
-  title: "howto"
-  author: "Jane Doe"
-  date: "19.11.2022"
+  title: "Principes, procédures et tips pour traiter les données dans R"
+  author:
+    - PHilippe Gay
+    - Nicolas Bressoud
+  date: last-modified
   chapters:
     - index.qmd
     - intro.qmd
-    - summary.qmd
+    - 01_environnement.qmd
+    - 02_preparation.qmd
+    - 03_description.qmd
+    - 04_rapport.qmd
+    - 05_etudes_de_cas.qmd
     - references.qmd
 
 bibliography: references.bib

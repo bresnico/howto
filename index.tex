@@ -1,0 +1,1092 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table des matières}
+\else
+  \newcommand\contentsname{Table des matières}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Liste des Figures}
+\else
+  \newcommand\listfigurename{Liste des Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Liste des Tables}
+\else
+  \newcommand\listtablename{Liste des Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{Liste des Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{french}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Principes, procédures et tips pour traiter les données dans R},
+  pdfauthor={PHilippe Gay; Nicolas Bressoud},
+  pdflang={fr},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Principes, procédures et tips pour traiter les données dans R}
+\author{PHilippe Gay \and Nicolas Bressoud}
+\date{19/11/2022}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, sharp corners, frame hidden, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table des matières}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{pruxe9face}{%
+\chapter*{Préface}\label{pruxe9face}}
+\addcontentsline{toc}{chapter}{Préface}
+
+\markboth{Préface}{Préface}
+
+Pourquoi ce livre ? Contexte.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{comment-lire-ce-livre}{%
+\chapter*{Comment lire ce livre}\label{comment-lire-ce-livre}}
+\addcontentsline{toc}{chapter}{Comment lire ce livre}
+
+\markboth{Comment lire ce livre}{Comment lire ce livre}
+
+philosophie, utilisation
+
+\bookmarksetup{startatroot}
+
+\hypertarget{environnement-de-travail}{%
+\chapter{Environnement de travail}\label{environnement-de-travail}}
+
+Notre configuration de travail implique:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{GitHub} qui agit comme lieu principal de \textbf{stockage}, de
+  \textbf{communication} de codes ou/et résultats, de
+  \textbf{versioning}.
+\item
+  \emph{RStudio} dont le fonctionnement avec \texttt{bookdown} est
+  particulièrement appréciable
+\item
+  \emph{Sublime Text} qui doit être mieux connue mais permet de
+  travailler sur des bouts de code avec une syntaxe couleurs et facilite
+  ainsi le \emph{copier/coller} d'anciens projets vers de nouveaux.
+\end{itemize}
+
+\hypertarget{github-et-structure-des-dossiers}{%
+\section{GitHub et structure des
+dossiers}\label{github-et-structure-des-dossiers}}
+
+On dispose d'un compte chez \emph{GitHub}. Le compte est lié à 3
+machines (2 macs et un pc). Le \emph{commit} et le \emph{push} se
+réalisent depuis RStudio directement. Sur chaque machine, on s'offre
+tout de même une solution \emph{user friendly} avec \emph{GitHub
+Desktop}.
+
+Sur chaque machine, on dispose d'une structure des dossiers de type
+\emph{Documents \textgreater{} GitHub \textgreater{} r-projects}
+(attention à la casse).
+
+Le dossier \emph{r-projects} contient autant de sous-dossiers que de
+projets à analyser.
+
+Chaque sous-dossier a un nom structuré ainsi (attention à la casse) :
+\emph{contexteannée\_initialesauteurprincipal} (par exemple :
+\emph{dupp2019\_cr} ou \emph{crips2019\_lv}).
+
+Dans chaque sous-dossier:
+
+\begin{itemize}
+\tightlist
+\item
+  un fichier \emph{Rproj} est disponible et il porte le nom du
+  sous-dossier
+\item
+  un fichier présentant les données brutes (raw) est disponible (en
+  lecture seule de préférence) et il porte un titre de la forme
+  \emph{nomsousdossier\_raw}. Il peut être en format \emph{.csv} ou
+  \emph{.xlsx}. Si les données brutes sont sur plusieurs fichiers (dans
+  le cas de plusieurs temps de mesure, par exemple, on les distingue
+  avec l'ajout *\_t1*, \ldots)
+\item
+  un fichier de script \emph{.R} intitulé \emph{nomsousdossier\_script}
+\item
+  un fichier Rmarkdown \emph{.Rmd} intitulé
+  \emph{nomsousdossier\_rapport} et rédigé en parallèle du script. Ce
+  rapport général appelle le script pour réaliser les sorties.
+\end{itemize}
+
+\begin{quote}
+On ne s'est pas encore déterminé sur les bonnes pratiques pour la
+constitution du rapport en RMarkdown : Est-ce OK et satisfaisant de
+``simplement'' rappeler le script et uniquement ``afficher'' les objets
+?
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  les sorties de type \emph{HTML}, \emph{PDF}, ou image (\emph{png},
+  \emph{svg}, \ldots) n'obéissent pas à des règles précises.
+\item
+  plusieurs rapports peuvent coexister en fonction des destinataires ;
+  ils sont tous une adaptation du rapport ``master'' décrit plus haut.
+\end{itemize}
+
+L'intérêt est d'avoir à tout moment sur GitHub une vision claire des
+modifications réalisées à travers les différentes étapes de mise à jour
+des fichier (traçabilité de la démarche). De plus, une attention
+particulière est accordée à l'écriture d'un code avec une grammaire (le
+plus possible) conventionnelle qui est lisible et commenté, que ce soit
+dans le script ou dans le rapport en RMarkdown.
+
+Le script et le rapport se rédigent en parallèle.
+
+\hypertarget{ruxe9daction-du-code-et-grammaire}{%
+\section{Rédaction du code et
+grammaire}\label{ruxe9daction-du-code-et-grammaire}}
+
+Le code suivant est, à notre sens, un exemple de bonne pratique car :
+
+\begin{itemize}
+\tightlist
+\item
+  des titres mis en évidence structurent le code
+\item
+  les commentaires sont présents; ils se veulent précis et concis
+\item
+  des espaces facilitent la lecture
+\item
+  le code n'est pas \emph{- à notre connaissance -} inutilement
+  répétitif
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\#visualisation\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\CommentTok{\#score échelle HBSC}
+
+\NormalTok{vis\_hbs }\OtherTok{\textless{}{-}}\NormalTok{ d\_long\_paired }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ temps, }\AttributeTok{color =}\NormalTok{ group, }\AttributeTok{y =}\NormalTok{ hbs\_sco) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_jitterdodge}\NormalTok{(}\AttributeTok{dodge.width=}\NormalTok{.}\DecValTok{7}\NormalTok{, }\AttributeTok{jitter.width =}\NormalTok{ .}\DecValTok{2}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{shape =} \DecValTok{4}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ group), }\AttributeTok{geom =} \StringTok{"line"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Mesure des CPS"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Score au HBSC"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_brewer}\NormalTok{(}\StringTok{"Groupe"}\NormalTok{, }\AttributeTok{palette =} \StringTok{"Set1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Un autre exemple illustre cette grammaire. On rajoute quelques espaces
+pour faciliter la lecture et repérer les structures \emph{- parfois
+nécessairement -} répétitives :
+
+\begin{quote}
+On aimerait toutefois savoir comment éviter ces répétitions. Notamment
+quand on génère 10 graphiques qui ne varient, dans le code, qu'au niveau
+de l'axe Y et le titre, par exemple.
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Création des moyennes de chaque questionnaire pour chaque observation}
+
+\NormalTok{d\_long }\OtherTok{\textless{}{-}}\NormalTok{ d\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{hbs\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"hbs"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{pec\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"pec"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{be\_sco  =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"be"}\NormalTok{)) ,}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{est\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"est"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{cli\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"cli"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{sou\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"sou"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{mot\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"hbs"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T))}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Une source pour la grammaire du codage peut être consultée à
+l'adresse :}
+https://www.inwt-statistics.com/read-blog/inwts-guidelines-for-r-code.html
+
+\hypertarget{rstudio-et-packages}{%
+\section{RStudio et packages}\label{rstudio-et-packages}}
+
+On dispose en l'état de la version 4.0.2 de R ainsi que de la version
+1.3.959 de RStudio.
+
+Sur les macs, différents ajouts comme Xquartz ou des modules liés à
+LaTeX sont également installés.
+
+\begin{quote}
+Mais honnêtement, on a perdu de vue leur rôle plus ou moins nécessaire
+sachant que LaTeX est certes nécessaire pour les sorties PDF sans que
+toutes les extensions liées à LaTex le soient\ldots{} Ce sera à
+clarifier au prochain clean install.
+\end{quote}
+
+Pour la version PC, on a installé tinyTEX `tinytex::install\_tinytex()'
+directement `TinyTeX to C:\Users\nbr\AppData\Roaming/TinyTeX' depuis la
+console. On rappelle que \texttt{LaTeX} est nécessaire à la génération
+de \emph{PDF}.
+
+Dans R, les packages suivants sont installés:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{tidyverse}, suite de packages pour travailler de manière
+  \emph{tidy} (bien rangé) : \texttt{ggplot2}, \texttt{dplyr},
+  \texttt{tidyr}, \texttt{readr}, \texttt{purrr}, \texttt{tibble},
+  \texttt{stringr}, \texttt{forcats}.
+\item
+  \texttt{readxl}, permet de lire et importer les fichiers .xlsx.
+\item
+  \texttt{bookdown}, permet de réaliser à peu de frais le présent livre
+\end{itemize}
+
+En principe, pour des raisons d'élégance du code, on cherche à limiter
+la sur-installation de nouveaux packages. Il s'agit d'explorer ce que
+les packages installés ont à offrir avant de courir sur d'autres
+fonctions vues sur le web.
+
+\hypertarget{sublime-text-et-packages}{%
+\section{Sublime Text et Packages}\label{sublime-text-et-packages}}
+
+L'utilisation de Sublime Tex est ergonomique. Les packages du logiciel
+permettent de travailler comme R Studio, avec toutefois un environnement
+plus aéré et propice à la rédaction avec des codes couleurs agréables.
+Il est complémentaire à RStudio mais peut carrément le remplacer pour
+certaines courtes étapes de rédaction.
+
+Les packages installés sont:
+
+\begin{itemize}
+\tightlist
+\item
+  sur PC : R-Box, R-IDE, LSP
+\item
+  sur MAC : R-Box, SendCode
+\end{itemize}
+
+\begin{quote}
+On doit encore clarifier comment lier sur PC et MAC GitHub. Mais ce
+n'est pas prioritaire. GitHub sur Sublime Text ? Emmet, git, sublime
+github. https://gist.github.com/KedrikG/f7b955dc371b1204ec76ce862e2dcd2e
+\end{quote}
+
+\hypertarget{scrivener-3-zotero-betterbibtext---ruxe9daction-darticles-longs}{%
+\section{Scrivener 3 + Zotero + BetterBibText - Rédaction d'articles
+longs}\label{scrivener-3-zotero-betterbibtext---ruxe9daction-darticles-longs}}
+
+On doit déterminer comment travailler en \texttt{RMarkdown} pour des
+articles longs via \texttt{Scrivener\ 3}. Ce logiciel a l'avantage de
+facilement découper l'article en plusieurs zones de travail et
+\emph{fusionner} le tout à l'export. De plus, on peut lier dynamiquement
+la rédaction à Zotero via un fichier \texttt{Bibtex} ce qui est très
+intéressant.
+
+On pense aussi à rassembler les éléments rédigés dans Scrivener et
+compiler le tout avec \texttt{Bookdown} sous R.
+
+Un hypothétique *workflow'' serait : script dans R \textgreater{}
+ébauche de rapport dans R (RMarkdown) \textgreater{} copier/coller de
+l'ébauche de rapport dans Scrivener \textgreater{} rédaction dans
+Scrivener en compatibilité avec \texttt{Bookdown} \textgreater{} export
+de Scrivener dans R \textgreater{} préparation de la sortie avec
+\texttt{Bookdown}.
+
+Mais ce n'est pas optimal. Notre souhait est de pouvoir, p.ex., modifier
+une donnée dans la source des données (le fichier brut) et cliquer sur
+un (voire deux) boutons pour mettre à jour l'article final ! On n'y est
+pas encore !!
+
+L'organisation de la rédaction est un gros chantier qui n'est pas du
+tout structuré en l'état.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{pruxe9paration-des-donnuxe9es}{%
+\chapter{Préparation des données}\label{pruxe9paration-des-donnuxe9es}}
+
+Au sein de ce chapitre, on cherche à atteindre le double objectif de/d'
+:
+
+\begin{itemize}
+\tightlist
+\item
+  expliciter une manière que l'on espère \emph{élégante} et
+  \emph{efficace} \emph{- Le minimum d'effort pour le maximum
+  d'efficacité) -} de préparer les données
+\item
+  se conformer aux apprentissages et pratiques en traitement des données
+  (et progresser)
+\end{itemize}
+
+On cherche dans la mesure du possible à toujours travailler avec des
+\emph{tidy datas} et à utiliser en priorité les fonctions de la série de
+packages de \texttt{tidyverse}.
+
+\hypertarget{bonnes-pratiques-dans-le-systuxe8me-de-ruxe9colte-des-donnuxe9es-qualtrics}{%
+\section{Bonnes pratiques dans le système de récolte des données
+(Qualtrics,
+\ldots)}\label{bonnes-pratiques-dans-le-systuxe8me-de-ruxe9colte-des-donnuxe9es-qualtrics}}
+
+Chaque participant·e reçoit un \emph{id} partiellement anonymisé. Il est
+fourni par l'équipe de recherche (ce n'est pas construit par le ou la
+participant·e). L'\emph{id} ne contient que des chiffres pour simplifier
+le problème des majuscules/minuscules à la saisie et éviter les
+confusions entre le \emph{zéro} et la lettre \emph{o} (oui oui, c'est du
+vécu). Ceci signifie que l'\emph{id} dispose d'une structure qui permet
+de/d' :
+
+\begin{itemize}
+\tightlist
+\item
+  évaluer son authenticité
+\item
+  faciliter la catégorisation des données
+\item
+  repérer efficacement les \emph{id} et leur catégorisation dans les
+  traitement ultérieurs
+\end{itemize}
+
+\begin{quote}
+Exemple : un \emph{id} comme \emph{12.47.694} est structuré comme suit
+\emph{groupe12.constantearbitraire47.nombrealéatoireà3chiffres.}
+\end{quote}
+
+Chaque \emph{id} est \textbf{vérifié} dans Qualtrics, ce qui signifie
+qu'un·e participant·e doit confirmer l'\emph{id} pour que le système
+passe à la suite. On relève aussi l'intérêt de demander à
+l'utilisateur·trice de \textbf{confirmer son groupe d'appartenance} en
+cochant un facteur dans une \textbf{liste imposée} dans Qualtrics. Ceci
+a l'avantage de repérer les saisies fantasques (une personne met un
+\emph{id} bidon / un·e participant·e s'inscrit avec le bon \emph{id}
+mais dans le mauvais groupe, \ldots). Dans la préparation des données,
+il semble que l'on gagne ainsi un temps important pour trier les données
+valables. La confiance dans les données s'en trouve augmentée. On relève
+toutefois une faiblesse : le code n'est pas 100\% anonyme et on peut
+toujours remonter à un groupe de participant·es. Il faut alors en amont
+s'engager à détruire le document qui a permis la génération des
+\emph{id}.
+
+Chaque questionnaire est identifié par 3 premières lettre
+significatives, le nombre d'items et un \texttt{\_}:
+
+\begin{quote}
+Exemple : Questionnaire sur la motivation scolaire en 13 items est
+identifié par \texttt{mot13}.
+\end{quote}
+
+Ensuite, chacun des items est proprement nommé par ordre d'apparition,
+ce qui est fondamental, notamment pour le traitement des \textbf{items
+inversés} :
+
+\begin{quote}
+Exemple : \texttt{mot13\_1}, \texttt{mot13\_2}, \ldots,
+\texttt{mot13\_13} (il semble que Qualtrics ajoute par défaut le
+\emph{underscore\_} )
+\end{quote}
+
+\hypertarget{premiuxe8res-uxe9tapes-dans-r-en-principe-les-noms-des-variables-sont-sains}{%
+\section{Premières étapes dans R (en principe, les noms des variables
+sont
+sains)}\label{premiuxe8res-uxe9tapes-dans-r-en-principe-les-noms-des-variables-sont-sains}}
+
+On commence par le chargement des packages et l'importation du ou des
+fichiers de données. Dans cet exemple, on prend le cas (plus complexe)
+où nous devons gérer et associer deux \texttt{data\ frames}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\CommentTok{\# Importation des données Qualtrics à disposition {-}{-}{-}{-}}
+\NormalTok{d\_t1\_raw }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"crips2019\_lv\_raw\_t1.xlsx"}\NormalTok{)}
+\NormalTok{d\_t2\_raw }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\StringTok{"crips2019\_lv\_raw\_t2.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple}{%
+\subsection{ajout de la variable de temps dans chaque df (cas
+simple)}\label{ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple}}
+
+Chaque fichier représente un temps de mesure. Il nous suffit d'ajouter
+une variable indiquant cette information.
+
+Dans cet exemple, on règle en même temps le problème des \emph{id} qui
+contiennent éventuellement des majuscules.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Ajout de la variable temps sur chaque df et normalisation des id en minuscule.}
+
+\NormalTok{d\_t1 }\OtherTok{\textless{}{-}}\NormalTok{ d\_t1\_raw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{temps=}\StringTok{"temps 1"}\NormalTok{,}
+         \AttributeTok{id=}\FunctionTok{tolower}\NormalTok{(id)) }
+
+\NormalTok{d\_t2 }\OtherTok{\textless{}{-}}\NormalTok{ d\_t2\_raw }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{temps=}\StringTok{"temps 2"}\NormalTok{,}
+         \AttributeTok{id=}\FunctionTok{tolower}\NormalTok{(id))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{catuxe9gorisation-de-la-variable-de-temps-cas-avec-horodatage-pruxe9alable}{%
+\subsection{catégorisation de la variable de temps (cas avec horodatage
+préalable)}\label{catuxe9gorisation-de-la-variable-de-temps-cas-avec-horodatage-pruxe9alable}}
+
+Quand on possède un unique fichier regroupant toutes les observations,
+on peut catégoriser les données à partir de l'horodateur.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#modification de la variable "RecordedDate" en "date" en temps 1 et temps 2 tout en filtrant les id enregistrés hors temps 1 et temps 2.}
+\CommentTok{\#mais on commence par la renommer.}
+
+\NormalTok{d }\OtherTok{\textless{}{-}}\NormalTok{ d }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\AttributeTok{date =}\NormalTok{ RecordedDate) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\#dans cet ordre.}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{id =} \FunctionTok{tolower}\NormalTok{(id)) }\CommentTok{\#gestion de la casse.}
+
+\NormalTok{d }\OtherTok{\textless{}{-}}\NormalTok{ d }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{date =} \FunctionTok{case\_when}\NormalTok{(date }\SpecialCharTok{\textgreater{}=} \FunctionTok{as.POSIXct}\NormalTok{(}\StringTok{"01.08.2019"}\NormalTok{, }\AttributeTok{format=}\StringTok{"\%d.\%m.\%Y"}\NormalTok{, }\AttributeTok{tz=}\StringTok{"utc"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}=} \FunctionTok{as.POSIXct}\NormalTok{(}\StringTok{"31.08.2019"}\NormalTok{, }\AttributeTok{format=}\StringTok{"\%d.\%m.\%Y"}\NormalTok{, }\AttributeTok{tz=}\StringTok{"utc"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"temps 1"}\NormalTok{,}
+\NormalTok{                     date }\SpecialCharTok{\textgreater{}=} \FunctionTok{as.POSIXct}\NormalTok{(}\StringTok{"01.06.2020"}\NormalTok{, }\AttributeTok{format=}\StringTok{"\%d.\%m.\%Y"}\NormalTok{, }\AttributeTok{tz=}\StringTok{"utc"}\NormalTok{) }\SpecialCharTok{\&}\NormalTok{ date }\SpecialCharTok{\textless{}=} \FunctionTok{as.POSIXct}\NormalTok{(}\StringTok{"30.06.2020"}\NormalTok{, }\AttributeTok{format=}\StringTok{"\%d.\%m.\%Y"}\NormalTok{, }\AttributeTok{tz=}\StringTok{"utc"}\NormalTok{) }\SpecialCharTok{\textasciitilde{}} \StringTok{"temps 2"}\NormalTok{,}
+                     \ConstantTok{TRUE} \SpecialCharTok{\textasciitilde{}} \StringTok{"autre temps"}\NormalTok{)) }\CommentTok{\#on privilégie case\_when car on a 3 conditions et on va gérer les dates.}
+
+\CommentTok{\#Au passage, R a modifié le type de variable "date". On le laisser respirer... et on filtre... (si j\textquotesingle{}intègre filter dans le pipe, ça bug...)}
+
+\NormalTok{d }\OtherTok{\textless{}{-}}\NormalTok{ d }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(date }\SpecialCharTok{==}\StringTok{"temps 1"} \SpecialCharTok{|}\NormalTok{ date }\SpecialCharTok{==} \StringTok{"temps 2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+On est pas encore confiant sur la qualité du code ci-dessus.
+\end{quote}
+
+\hypertarget{cruxe9ation-dun-data-frame-unique}{%
+\subsection{création d'un data frame
+unique}\label{cruxe9ation-dun-data-frame-unique}}
+
+A ce stade, à partir du cas simple, il ne semble pas y avoir de raison
+au maintien de 2 df différents. On peut créer un df unique à l'aide,
+simplement, de \texttt{bind\_rows}. Cela nous évite de doubler les
+manipulations au temps 1 et au temps 2.
+
+Au préalable, on s'est assuré que les noms des variables correspondaient
+à notre nomenclature, et que l'ordre des questions dans chaque
+questionnaire était le même au \emph{temps 1} et au \emph{temps 2}.
+
+Les éventuelles nouvelles variables du temps 2 sont bien traitées grâce
+à l'ajout de \texttt{NA} pour les observations du temps 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Mise en formation long sur un df}
+
+\NormalTok{d\_long }\OtherTok{\textless{}{-}} \FunctionTok{bind\_rows}\NormalTok{(d\_t1,d\_t2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+On choisit la mise en format \emph{long} (au lieu de \emph{wide}) pour
+correspondre au attentes du traitement \emph{tidy} des données. Cela
+signifie que chaque ligne est une observation et chaque colonne est une
+variable. Ceci implique que chaque participant·e se retrouve dans deux
+lignes : une concernant la modalité (facteur) \textbf{temps 1} et
+l'autre selon la modalité \textbf{temps 2}. C'était déroutant au début
+mais on a adopté cette manière de faire.
+\end{quote}
+
+\hypertarget{gestion-des-items-uxe0-inverser}{%
+\subsection{gestion des items à
+inverser}\label{gestion-des-items-uxe0-inverser}}
+
+Les items à inverser sont traités en étant strictement remplacés via la
+fonction \texttt{mutate()} dans le cadre de l'enregistrement d'un
+nouveau \texttt{data\ frame}. R permet de remonter les changements donc
+cet écrasement n'empêche pas la vérification des processus, étape par
+étape.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Recondage des variables au score inversé}
+
+\NormalTok{d\_long }\OtherTok{\textless{}{-}}\NormalTok{ d\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{hbs20\_\_7 =} \DecValTok{6} \SpecialCharTok{{-}}\NormalTok{ hbs20\_\_7,}
+         \AttributeTok{pec5\_\_5 =} \DecValTok{6} \SpecialCharTok{{-}}\NormalTok{ pec5\_\_5,}
+         \AttributeTok{be8\_\_4 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ be8\_\_4,}
+         \AttributeTok{be8\_\_5 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ be8\_\_5,}
+         \AttributeTok{be8\_\_8 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ be8\_\_8,}
+         \AttributeTok{est10\_\_3 =} \DecValTok{5} \SpecialCharTok{{-}}\NormalTok{ est10\_\_3,}
+         \AttributeTok{est10\_\_5 =} \DecValTok{5} \SpecialCharTok{{-}}\NormalTok{ est10\_\_5,}
+         \AttributeTok{est10\_\_7 =} \DecValTok{5} \SpecialCharTok{{-}}\NormalTok{ est10\_\_7,}
+         \AttributeTok{est10\_\_10 =} \DecValTok{5} \SpecialCharTok{{-}}\NormalTok{ est10\_\_10,}
+         \AttributeTok{sou13\_\_6 =} \DecValTok{6} \SpecialCharTok{{-}}\NormalTok{ sou13\_\_6,}
+         \AttributeTok{sou13\_\_9 =} \DecValTok{6} \SpecialCharTok{{-}}\NormalTok{ sou13\_\_9,}
+         \AttributeTok{mot16\_\_4 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ mot16\_\_4,}
+         \AttributeTok{mot16\_\_8 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ mot16\_\_8,}
+         \AttributeTok{mot16\_\_12 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ mot16\_\_12,}
+         \AttributeTok{mot16\_\_15 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ mot16\_\_15,}
+         \AttributeTok{mot16\_\_16 =} \DecValTok{8} \SpecialCharTok{{-}}\NormalTok{ mot16\_\_16)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Le code paraît fastidieux et potentiellement source d'erreurs. De plus,
+ce recodage s'accompagne d'une feuille annexe sur laquelle on a noté
+avec prudence les items en cause et la formule pour inverser les
+scores\ldots{} On ne sait mieux faire\ldots{}
+\end{quote}
+
+Ce procédé d'écrasement facilite l'analyse de la cohérence interne ou le
+calcul des scores par la suite (cf.~chapitre \emph{description}).
+
+\hypertarget{calcul-du-score-de-chaque-questionnaire-par-observation}{%
+\subsection{calcul du score de chaque questionnaire par
+observation}\label{calcul-du-score-de-chaque-questionnaire-par-observation}}
+
+La variable qui contient le score global de chaque questionnaire par
+participant·e porte l'extension *\_sco* :
+
+\begin{quote}
+Exemple : \texttt{mot13\_sco} est la variable de score total de
+\texttt{mot13\_1} à \texttt{mot13\_13} avec les variables qui ont été
+inversées (sans conservation dans le df de l'item non-inversé).
+\end{quote}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Recondage des variables au score inversé}
+
+\CommentTok{\#Création des moyennes de chaque questionnaire pour chaque observation}
+
+\NormalTok{d\_long }\OtherTok{\textless{}{-}}\NormalTok{ d\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{hbs\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"hbs"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{pec\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"pec"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{be\_sco  =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"be"}\NormalTok{)) ,}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{est\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"est"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{cli\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"cli"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{sou\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"sou"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T),}
+         \AttributeTok{mot\_sco =} \FunctionTok{rowMeans}\NormalTok{(}\FunctionTok{select}\NormalTok{(.,}\FunctionTok{starts\_with}\NormalTok{(}\StringTok{"hbs"}\NormalTok{)),}\AttributeTok{na.rm =}\NormalTok{T))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+De nouveau, on ne crée pas d'objet intermédiaire sachant que R sait très
+bien nous permettre de vérifier le processus, étape par étape.
+\end{quote}
+
+Ce code paraît très efficace. Il se base sur notre nomenclature sans
+risque d'erreur, indépendamment du nombre de variable ou de la position
+des colonnes.
+
+\begin{quote}
+On apprécie, même si on ne comprend pas encore à satisfaction la
+fonction ´select´et son fonctionnement.
+\end{quote}
+
+\hypertarget{filtrage-des-observations}{%
+\subsection{filtrage des observations}\label{filtrage-des-observations}}
+
+Ici, on a essayé de développer une technique pour ne garder que les
+\emph{id} qui se retrouvent strictement au temps 1 et au temps 2.
+
+Les enjeux sont cruciaux :
+
+\begin{itemize}
+\tightlist
+\item
+  on doit s'assurer qu'un même \emph{id} ne se retrouve pas plusieurs
+  fois dans le même temps (un·e participant·e peut avoir rempli 2 fois
+  le questionnaire du temps, p.ex.)
+\item
+  on doit aussi s'assurer que nous ferons nos comparaisons temps 1 /
+  temps 2 sur des données complètes
+\end{itemize}
+
+C'est notre présomption de base. Il est dès lors important de filtrer
+les observations de manière stricte.
+
+Pour cela, nous avons :
+
+\begin{itemize}
+\tightlist
+\item
+  créé un df de comparaison pour pouvoir dire à R quoi sélectionner. Ce
+  df va, en deux étapes, ne garder que (1) les \emph{id} uniques dans
+  chaque temps puis (2) constituant une paire (t1, t2).
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d\_comp }\OtherTok{\textless{}{-}}\NormalTok{ d\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{drop\_na}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#par sécurité, on supprime les lignes dont l\textquotesingle{}id est vide}
+  \FunctionTok{arrange}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#visuel uniquement}
+  \FunctionTok{group\_by}\NormalTok{(id, temps) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(n}\SpecialCharTok{==}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#On s\textquotesingle{}est assuré que chaque id est unique dans chaque modalité de temps. On doit encore être sûrs qu\textquotesingle{}on a maintenant exactement une paire (t1,t2). Donc on continue le processus que R réalise dans cet ordre.}
+  \FunctionTok{ungroup}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{count}\NormalTok{(id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(n}\SpecialCharTok{==}\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \CommentTok{\#on ne garde que les paires de id qui se retrouvent dans t1 et t2. C\textquotesingle{}est notre grosse perte de données de ce traitement}
+  \FunctionTok{ungroup}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+On devrait vérifier la validité de cette méthode, sur le plan des bonnes
+pratiques stat, et aussi sur le plan du codage dans R\ldots et aussi
+s'assurer qu'elle fonctionne bien comme on le pense en la mettant à
+l'épreuve.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  créé un nouveau df qui ne contient plus que les paires souhaitées
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Notre df de comparaison est prêt. On peut procéder à l\textquotesingle{}élagage de d\_long.}
+
+\NormalTok{d\_long\_paired }\OtherTok{\textless{}{-}}\NormalTok{ d\_long }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(id }\SpecialCharTok{\%in\%}\NormalTok{ d\_comp}\SpecialCharTok{$}\NormalTok{id) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{group=}\FunctionTok{ifelse}\NormalTok{(group}\SpecialCharTok{==}\StringTok{"con"}\NormalTok{, }\StringTok{"contrôle"}\NormalTok{,}\StringTok{"expérimental"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+On a été un peu sauvé avec le logique \texttt{\%in\%} mais sans bien
+savoir pourquoi \texttt{==} ne convient pas. Dans l'example, on en a
+profité pour modifier les facteurs de la variable \texttt{group}. Les
+forums ne sont pas clairs sur la différence entre \texttt{ifelse}et
+\texttt{if\_else}ou encore \texttt{case\_when}. On doit clarifier cela.
+\end{quote}
+
+\hypertarget{gestion-des-donnuxe9es-manquantes}{%
+\subsection{gestion des données
+manquantes}\label{gestion-des-donnuxe9es-manquantes}}
+
+\begin{quote}
+pas encore de bonnes pratiques.
+\end{quote}
+
+\hypertarget{gestion-des-donnuxe9es-extruxeames}{%
+\subsection{gestion des données
+extrêmes}\label{gestion-des-donnuxe9es-extruxeames}}
+
+\begin{quote}
+pas encore de bonnes pratiques.
+\end{quote}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{description-des-donnuxe9es}{%
+\chapter{Description des données}\label{description-des-donnuxe9es}}
+
+\hypertarget{obtenir-une-synthuxe8se-de-donnuxe9es}{%
+\section{Obtenir une synthèse de
+données}\label{obtenir-une-synthuxe8se-de-donnuxe9es}}
+
+Voici deux exemples pour obtenir des petits résumés.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{d\_long\_paired\_sum }\OtherTok{\textless{}{-}}\NormalTok{ d\_long\_paired }\SpecialCharTok{\%\textgreater{}\%} 
+   \FunctionTok{mutate}\NormalTok{(}\AttributeTok{sex=}\FunctionTok{ifelse}\NormalTok{(sex}\SpecialCharTok{==}\StringTok{"1"}\NormalTok{, }\StringTok{"garçons"}\NormalTok{,}\StringTok{"filles"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+   \FunctionTok{group\_by}\NormalTok{(temps, group, sex) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n=}\FunctionTok{n}\NormalTok{())}
+
+\NormalTok{d\_long\_paired\_sum2 }\OtherTok{\textless{}{-}}\NormalTok{ d\_long\_paired }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(temps, group) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{n=}\FunctionTok{n}\NormalTok{(),}
+            \AttributeTok{mean\_hbs=}\FunctionTok{mean}\NormalTok{(hbs\_sco),}
+            \AttributeTok{mean\_pec=}\FunctionTok{mean}\NormalTok{(pec\_sco),}
+            \AttributeTok{mean\_be=}\FunctionTok{mean}\NormalTok{(be\_sco),}
+            \AttributeTok{mean\_est=}\FunctionTok{mean}\NormalTok{(est\_sco),}
+            \AttributeTok{mean\_cli=}\FunctionTok{mean}\NormalTok{(cli\_sco),}
+            \AttributeTok{mean\_sou=}\FunctionTok{mean}\NormalTok{(sou\_sco),}
+            \AttributeTok{mean\_mot=}\FunctionTok{mean}\NormalTok{(mot\_sco),}
+            \AttributeTok{mean\_sho1=}\FunctionTok{mean}\NormalTok{(sho\_1),}
+            \AttributeTok{mean\_sho2=}\FunctionTok{mean}\NormalTok{(sho\_2),}
+            \AttributeTok{mean\_sho3=}\FunctionTok{mean}\NormalTok{(sho\_3),}
+            \AttributeTok{mean\_sho4=}\FunctionTok{mean}\NormalTok{(sho\_4))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{principes}{%
+\section{Principes}\label{principes}}
+
+\hypertarget{procuxe9dures}{%
+\section{Procédures}\label{procuxe9dures}}
+
+\hypertarget{le-cas-des-boucles}{%
+\section{Le cas des boucles}\label{le-cas-des-boucles}}
+
+La fonction \texttt{for} semble très utile pour faire faire des boucles.
+Quand je dois réaliser 10 plots de 10 VI, je peux juste préparer mon
+plot et l'intégrer dans une boucle. La contrainte semble être liée à
+\texttt{aes} et peut-être aussi au titre du plot dont on aimerait aussi
+``automatiser'' la génération.
+
+Infos à comprendre et tester ici :
+\url{https://statistique-et-logiciel-r.com/comment-utiliser-ggplot-dans-une-boucle-ou-dans-une-fonction/}
+
+intégrer et expliquer le cas d'école réussi avec les données IBE:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\#visualisation en loop\#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Liste des noms des variables que l\textquotesingle{}on veut (a à p uniquement).}
+\NormalTok{var\_list }\OtherTok{=} \FunctionTok{names}\NormalTok{(d\_paired)[}\DecValTok{6}\SpecialCharTok{:}\DecValTok{21}\NormalTok{]}
+
+\CommentTok{\# création de la liste pour accueillir les 16 (21{-}5) plots}
+\NormalTok{plot\_list }\OtherTok{=} \FunctionTok{list}\NormalTok{()}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{16}\NormalTok{) \{}
+\NormalTok{  p }\OtherTok{\textless{}{-}}\NormalTok{ d\_paired }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ dat) }\SpecialCharTok{+}
+    \FunctionTok{aes\_string}\NormalTok{(}\AttributeTok{y =}\NormalTok{ var\_list[i]) }\SpecialCharTok{+}
+    \FunctionTok{geom\_jitter}\NormalTok{(}\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{alpha =}\NormalTok{ .}\DecValTok{5}\NormalTok{, }\AttributeTok{width =} \FloatTok{0.3}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"point"}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{shape =} \DecValTok{4}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{stat\_summary}\NormalTok{(}\AttributeTok{fun =}\NormalTok{ mean, }\AttributeTok{geom =} \StringTok{"line"}\NormalTok{, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =} \DecValTok{1}\NormalTok{), }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Mesure item"}\NormalTok{,i), }\AttributeTok{y =} \StringTok{"Score"}\NormalTok{) }\SpecialCharTok{+}
+    \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{hjust =} \FloatTok{0.5}\NormalTok{))  }
+\NormalTok{  plot\_list[[i]] }\OtherTok{=}\NormalTok{ p}
+\NormalTok{\}}
+\FunctionTok{dev.off}\NormalTok{()}
+
+\CommentTok{\# enregistrement des plots en png par fichier séparé avec un nom correspondant au nom de la variable et non de son numéro.}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{16}\NormalTok{) \{}
+\NormalTok{  temp\_plot }\OtherTok{=}\NormalTok{ plot\_list[[i]]}
+  \FunctionTok{ggsave}\NormalTok{(temp\_plot, }\AttributeTok{file=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"plot\_"}\NormalTok{, var\_list[[i]],}\StringTok{".png"}\NormalTok{), }\AttributeTok{width =} \DecValTok{14}\NormalTok{, }\AttributeTok{height =} \DecValTok{10}\NormalTok{, }\AttributeTok{units =} \StringTok{"cm"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{tableaux}{%
+\section{Tableaux}\label{tableaux}}
+
+\hypertarget{plots}{%
+\section{Plots}\label{plots}}
+
+intégrer mes trouvailles de crips2019 et ce qu'un plot doit montrer.
+
+Travail avec Zoe. Notes à intégrer :
+
+Réaliser des boxplots avec barres d'erreurs
+
+{[} {]} --\textgreater{} plutôt utiliser select des variables ou filter
+des participants gather --\textgreater{} 1er argument nom et 2ème
+argument valeur
+
+set.sid dans Rmarkdown pour figer les aléatoires, p.ex. le jitter pour
+pas que ça change à chaque lancement.
+
+installer des kits de couleurs au besoin.
+
+shape : les numéros correspondent à des formes de points.
+
+geom\_line : 3 arguments minimum. avec group. --\textgreater{} pourquoi
+``group'' et pourquoi ``1''. Alt + N = \textasciitilde{}
+
+jitter --\textgreater{} position et positionjitterdodge pour comparer G
+et F
+
+Afficher toutes les catégries, même les vides :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \FunctionTok{scale\_x\_discrete}\NormalTok{(}\AttributeTok{drop =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\# Forcer l\textquotesingle{}affichage des catégories vides}
+\CommentTok{\# A voir si la variable doit être un facteur}
+\NormalTok{d }\OtherTok{\textless{}{-}}\NormalTok{ d }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}
+         \AttributeTok{q1 =} \FunctionTok{factor}\NormalTok{(q1, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{,}\StringTok{"4"}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pas du tout"}\NormalTok{, }\StringTok{"plutôt non"}\NormalTok{, }\StringTok{"plutôt oui"}\NormalTok{, }\StringTok{"tout à fait"}\NormalTok{)),}
+         \AttributeTok{q2 =} \FunctionTok{factor}\NormalTok{(q2, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{,}\StringTok{"4"}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pas du tout"}\NormalTok{, }\StringTok{"plutôt non"}\NormalTok{, }\StringTok{"plutôt oui"}\NormalTok{, }\StringTok{"tout à fait"}\NormalTok{)),}
+         \AttributeTok{q3 =} \FunctionTok{factor}\NormalTok{(q3, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{,}\StringTok{"4"}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pas du tout"}\NormalTok{, }\StringTok{"plutôt non"}\NormalTok{, }\StringTok{"plutôt oui"}\NormalTok{, }\StringTok{"tout à fait"}\NormalTok{)),}
+         \AttributeTok{q4 =} \FunctionTok{factor}\NormalTok{(q4, }\AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\StringTok{"1"}\NormalTok{,}\StringTok{"2"}\NormalTok{,}\StringTok{"3"}\NormalTok{,}\StringTok{"4"}\NormalTok{), }\AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"pas du tout"}\NormalTok{, }\StringTok{"plutôt non"}\NormalTok{, }\StringTok{"plutôt oui"}\NormalTok{, }\StringTok{"tout à fait"}\NormalTok{)),}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{rapport}{%
+\chapter{Rapport}\label{rapport}}
+
+\hypertarget{principes-1}{%
+\section{Principes}\label{principes-1}}
+
+Avec ressources (fameux document PDF de CS durant le pre-doc) Ce qui est
+attendu dans un document de type rapport. (à l'aide du rapport de ZL et
+de celui en production pour LV)
+
+Kable et KableExtra
+
+bon affichage d'un tableau
+
+insérer image externe
+
+\hypertarget{procuxe9dures-cluxe9s}{%
+\section{Procédures clés}\label{procuxe9dures-cluxe9s}}
+
+\hypertarget{un-mot-sur-les-normes-apa}{%
+\section{Un mot sur les normes APA}\label{un-mot-sur-les-normes-apa}}
+
+\hypertarget{un-mot-sur-bookdown-et-github}{%
+\section{Un mot sur Bookdown et
+GitHub}\label{un-mot-sur-bookdown-et-github}}
+
+cf.~chapitre 1.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{etudes-de-cas}{%
+\chapter{Etudes de cas}\label{etudes-de-cas}}
+
+\hypertarget{data-masking-walrus-opuxe9rator-et-sting-interpolation}{%
+\section{Data masking, Walrus opérator et sting
+interpolation}\label{data-masking-walrus-opuxe9rator-et-sting-interpolation}}
+
+Exemple de Mutate dans une fonction ou même au sein d'un loop. voir
+sandbox.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# avec tunnel. pas essayé encore.}
+\NormalTok{fun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(df, var) \{}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{mutate}\NormalTok{(}\StringTok{"\{var\}"} \SpecialCharTok{:}\ErrorTok{=}\NormalTok{ key }\SpecialCharTok{{-}}\NormalTok{ \{\{var\}\})}
+\NormalTok{\}}
+\CommentTok{\# avec pull(). OK.}
+
+\NormalTok{fun }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(df, var) \{}
+\NormalTok{  df }\OtherTok{\textless{}{-}}\NormalTok{ df }\SpecialCharTok{\%\textgreater{}\%} 
+    \FunctionTok{mutate}\NormalTok{(}\StringTok{"\{var\}"} \SpecialCharTok{:}\ErrorTok{=}\NormalTok{ key }\SpecialCharTok{{-}} \FunctionTok{pull}\NormalTok{(.,var))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{ruxe9fuxe9rences}{%
+\chapter*{Références}\label{ruxe9fuxe9rences}}
+\addcontentsline{toc}{chapter}{Références}
+
+\markboth{Références}{Références}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+
+
+\end{document}
