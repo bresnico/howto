@@ -3,6 +3,6 @@
 .Rdata
 .httr-oauth
 .DS_Store
-/_site/
+/_book/
 /.quarto/
 
