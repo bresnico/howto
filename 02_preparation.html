@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Principes, procédures et tips pour traiter les données dans R - 2&nbsp; Préparation des données</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03_description.html" rel="next">
+<link href="./01_environnement.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Préparation des données</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Principes, procédures et tips pour traiter les données dans R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Préface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Comment lire ce livre</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_environnement.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environnement de travail</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_preparation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Préparation des données</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_description.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Description des données</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_rapport.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rapport</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_etudes_de_cas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Etudes de cas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">Références</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#bonnes-pratiques-dans-le-système-de-récolte-des-données-qualtrics" id="toc-bonnes-pratiques-dans-le-système-de-récolte-des-données-qualtrics" class="nav-link active" data-scroll-target="#bonnes-pratiques-dans-le-système-de-récolte-des-données-qualtrics"><span class="toc-section-number">2.1</span>  Bonnes pratiques dans le système de récolte des données (Qualtrics, …)</a></li>
+  <li><a href="#premières-étapes-dans-r-en-principe-les-noms-des-variables-sont-sains" id="toc-premières-étapes-dans-r-en-principe-les-noms-des-variables-sont-sains" class="nav-link" data-scroll-target="#premières-étapes-dans-r-en-principe-les-noms-des-variables-sont-sains"><span class="toc-section-number">2.2</span>  Premières étapes dans R (en principe, les noms des variables sont sains)</a>
+  <ul class="collapse">
+  <li><a href="#ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple" id="toc-ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple" class="nav-link" data-scroll-target="#ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple"><span class="toc-section-number">2.2.1</span>  ajout de la variable de temps dans chaque df (cas simple)</a></li>
+  <li><a href="#catégorisation-de-la-variable-de-temps-cas-avec-horodatage-préalable" id="toc-catégorisation-de-la-variable-de-temps-cas-avec-horodatage-préalable" class="nav-link" data-scroll-target="#catégorisation-de-la-variable-de-temps-cas-avec-horodatage-préalable"><span class="toc-section-number">2.2.2</span>  catégorisation de la variable de temps (cas avec horodatage préalable)</a></li>
+  <li><a href="#création-dun-data-frame-unique" id="toc-création-dun-data-frame-unique" class="nav-link" data-scroll-target="#création-dun-data-frame-unique"><span class="toc-section-number">2.2.3</span>  création d’un data frame unique</a></li>
+  <li><a href="#gestion-des-items-à-inverser" id="toc-gestion-des-items-à-inverser" class="nav-link" data-scroll-target="#gestion-des-items-à-inverser"><span class="toc-section-number">2.2.4</span>  gestion des items à inverser</a></li>
+  <li><a href="#calcul-du-score-de-chaque-questionnaire-par-observation" id="toc-calcul-du-score-de-chaque-questionnaire-par-observation" class="nav-link" data-scroll-target="#calcul-du-score-de-chaque-questionnaire-par-observation"><span class="toc-section-number">2.2.5</span>  calcul du score de chaque questionnaire par observation</a></li>
+  <li><a href="#filtrage-des-observations" id="toc-filtrage-des-observations" class="nav-link" data-scroll-target="#filtrage-des-observations"><span class="toc-section-number">2.2.6</span>  filtrage des observations</a></li>
+  <li><a href="#gestion-des-données-manquantes" id="toc-gestion-des-données-manquantes" class="nav-link" data-scroll-target="#gestion-des-données-manquantes"><span class="toc-section-number">2.2.7</span>  gestion des données manquantes</a></li>
+  <li><a href="#gestion-des-données-extrêmes" id="toc-gestion-des-données-extrêmes" class="nav-link" data-scroll-target="#gestion-des-données-extrêmes"><span class="toc-section-number">2.2.8</span>  gestion des données extrêmes</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Préparation des données</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Au sein de ce chapitre, on cherche à atteindre le double objectif de/d’ :</p>
+<ul>
+<li>expliciter une manière que l’on espère <em>élégante</em> et <em>efficace</em> <em>- Le minimum d’effort pour le maximum d’efficacité) -</em> de préparer les données</li>
+<li>se conformer aux apprentissages et pratiques en traitement des données (et progresser)</li>
+</ul>
+<p>On cherche dans la mesure du possible à toujours travailler avec des <em>tidy datas</em> et à utiliser en priorité les fonctions de la série de packages de <code>tidyverse</code>.</p>
+<section id="bonnes-pratiques-dans-le-système-de-récolte-des-données-qualtrics" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="bonnes-pratiques-dans-le-système-de-récolte-des-données-qualtrics"><span class="header-section-number">2.1</span> Bonnes pratiques dans le système de récolte des données (Qualtrics, …)</h2>
+<p>Chaque participant·e reçoit un <em>id</em> partiellement anonymisé. Il est fourni par l’équipe de recherche (ce n’est pas construit par le ou la participant·e). L’<em>id</em> ne contient que des chiffres pour simplifier le problème des majuscules/minuscules à la saisie et éviter les confusions entre le <em>zéro</em> et la lettre <em>o</em> (oui oui, c’est du vécu). Ceci signifie que l’<em>id</em> dispose d’une structure qui permet de/d’ :</p>
+<ul>
+<li>évaluer son authenticité</li>
+<li>faciliter la catégorisation des données</li>
+<li>repérer efficacement les <em>id</em> et leur catégorisation dans les traitement ultérieurs</li>
+</ul>
+<blockquote class="blockquote">
+<p>Exemple : un <em>id</em> comme <em>12.47.694</em> est structuré comme suit <em>groupe12.constantearbitraire47.nombrealéatoireà3chiffres.</em></p>
+</blockquote>
+<p>Chaque <em>id</em> est <strong>vérifié</strong> dans Qualtrics, ce qui signifie qu’un·e participant·e doit confirmer l’<em>id</em> pour que le système passe à la suite. On relève aussi l’intérêt de demander à l’utilisateur·trice de <strong>confirmer son groupe d’appartenance</strong> en cochant un facteur dans une <strong>liste imposée</strong> dans Qualtrics. Ceci a l’avantage de repérer les saisies fantasques (une personne met un <em>id</em> bidon / un·e participant·e s’inscrit avec le bon <em>id</em> mais dans le mauvais groupe, …). Dans la préparation des données, il semble que l’on gagne ainsi un temps important pour trier les données valables. La confiance dans les données s’en trouve augmentée. On relève toutefois une faiblesse : le code n’est pas 100% anonyme et on peut toujours remonter à un groupe de participant·es. Il faut alors en amont s’engager à détruire le document qui a permis la génération des <em>id</em>.</p>
+<p>Chaque questionnaire est identifié par 3 premières lettre significatives, le nombre d’items et un <code>_</code>:</p>
+<blockquote class="blockquote">
+<p>Exemple : Questionnaire sur la motivation scolaire en 13 items est identifié par <code>mot13</code>.</p>
+</blockquote>
+<p>Ensuite, chacun des items est proprement nommé par ordre d’apparition, ce qui est fondamental, notamment pour le traitement des <strong>items inversés</strong> :</p>
+<blockquote class="blockquote">
+<p>Exemple : <code>mot13_1</code>, <code>mot13_2</code>, …, <code>mot13_13</code> (il semble que Qualtrics ajoute par défaut le <em>underscore_</em> )</p>
+</blockquote>
+</section>
+<section id="premières-étapes-dans-r-en-principe-les-noms-des-variables-sont-sains" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="premières-étapes-dans-r-en-principe-les-noms-des-variables-sont-sains"><span class="header-section-number">2.2</span> Premières étapes dans R (en principe, les noms des variables sont sains)</h2>
+<p>On commence par le chargement des packages et l’importation du ou des fichiers de données. Dans cet exemple, on prend le cas (plus complexe) où nous devons gérer et associer deux <code>data frames</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Importation des données Qualtrics à disposition ----</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_t1_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"crips2019_lv_raw_t1.xlsx"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>d_t2_raw <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"crips2019_lv_raw_t2.xlsx"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="ajout-de-la-variable-de-temps-dans-chaque-df-cas-simple"><span class="header-section-number">2.2.1</span> ajout de la variable de temps dans chaque df (cas simple)</h3>
+<p>Chaque fichier représente un temps de mesure. Il nous suffit d’ajouter une variable indiquant cette information.</p>
+<p>Dans cet exemple, on règle en même temps le problème des <em>id</em> qui contiennent éventuellement des majuscules.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Ajout de la variable temps sur chaque df et normalisation des id en minuscule.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>d_t1 <span class="ot">&lt;-</span> d_t1_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">temps=</span><span class="st">"temps 1"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">id=</span><span class="fu">tolower</span>(id)) </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>d_t2 <span class="ot">&lt;-</span> d_t2_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">temps=</span><span class="st">"temps 2"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">id=</span><span class="fu">tolower</span>(id))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="catégorisation-de-la-variable-de-temps-cas-avec-horodatage-préalable" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="catégorisation-de-la-variable-de-temps-cas-avec-horodatage-préalable"><span class="header-section-number">2.2.2</span> catégorisation de la variable de temps (cas avec horodatage préalable)</h3>
+<p>Quand on possède un unique fichier regroupant toutes les observations, on peut catégoriser les données à partir de l’horodateur.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modification de la variable "RecordedDate" en "date" en temps 1 et temps 2 tout en filtrant les id enregistrés hors temps 1 et temps 2.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#mais on commence par la renommer.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">date =</span> RecordedDate) <span class="sc">%&gt;%</span>  <span class="co">#dans cet ordre.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">tolower</span>(id)) <span class="co">#gestion de la casse.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">case_when</span>(date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"01.08.2019"</span>, <span class="at">format=</span><span class="st">"%d.%m.%Y"</span>, <span class="at">tz=</span><span class="st">"utc"</span>) <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"31.08.2019"</span>, <span class="at">format=</span><span class="st">"%d.%m.%Y"</span>, <span class="at">tz=</span><span class="st">"utc"</span>) <span class="sc">~</span> <span class="st">"temps 1"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                     date <span class="sc">&gt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"01.06.2020"</span>, <span class="at">format=</span><span class="st">"%d.%m.%Y"</span>, <span class="at">tz=</span><span class="st">"utc"</span>) <span class="sc">&amp;</span> date <span class="sc">&lt;=</span> <span class="fu">as.POSIXct</span>(<span class="st">"30.06.2020"</span>, <span class="at">format=</span><span class="st">"%d.%m.%Y"</span>, <span class="at">tz=</span><span class="st">"utc"</span>) <span class="sc">~</span> <span class="st">"temps 2"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"autre temps"</span>)) <span class="co">#on privilégie case_when car on a 3 conditions et on va gérer les dates.</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Au passage, R a modifié le type de variable "date". On le laisser respirer... et on filtre... (si j'intègre filter dans le pipe, ça bug...)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">%&gt;%</span> <span class="fu">filter</span>(date <span class="sc">==</span><span class="st">"temps 1"</span> <span class="sc">|</span> date <span class="sc">==</span> <span class="st">"temps 2"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>On est pas encore confiant sur la qualité du code ci-dessus.</p>
+</blockquote>
+</section>
+<section id="création-dun-data-frame-unique" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="création-dun-data-frame-unique"><span class="header-section-number">2.2.3</span> création d’un data frame unique</h3>
+<p>A ce stade, à partir du cas simple, il ne semble pas y avoir de raison au maintien de 2 df différents. On peut créer un df unique à l’aide, simplement, de <code>bind_rows</code>. Cela nous évite de doubler les manipulations au temps 1 et au temps 2.</p>
+<p>Au préalable, on s’est assuré que les noms des variables correspondaient à notre nomenclature, et que l’ordre des questions dans chaque questionnaire était le même au <em>temps 1</em> et au <em>temps 2</em>.</p>
+<p>Les éventuelles nouvelles variables du temps 2 sont bien traitées grâce à l’ajout de <code>NA</code> pour les observations du temps 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Mise en formation long sur un df</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(d_t1,d_t2)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>On choisit la mise en format <em>long</em> (au lieu de <em>wide</em>) pour correspondre au attentes du traitement <em>tidy</em> des données. Cela signifie que chaque ligne est une observation et chaque colonne est une variable. Ceci implique que chaque participant·e se retrouve dans deux lignes : une concernant la modalité (facteur) <strong>temps 1</strong> et l’autre selon la modalité <strong>temps 2</strong>. C’était déroutant au début mais on a adopté cette manière de faire.</p>
+</blockquote>
+</section>
+<section id="gestion-des-items-à-inverser" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="gestion-des-items-à-inverser"><span class="header-section-number">2.2.4</span> gestion des items à inverser</h3>
+<p>Les items à inverser sont traités en étant strictement remplacés via la fonction <code>mutate()</code> dans le cadre de l’enregistrement d’un nouveau <code>data frame</code>. R permet de remonter les changements donc cet écrasement n’empêche pas la vérification des processus, étape par étape.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recondage des variables au score inversé</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> d_long <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hbs20__7 =</span> <span class="dv">6</span> <span class="sc">-</span> hbs20__7,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pec5__5 =</span> <span class="dv">6</span> <span class="sc">-</span> pec5__5,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">be8__4 =</span> <span class="dv">8</span> <span class="sc">-</span> be8__4,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">be8__5 =</span> <span class="dv">8</span> <span class="sc">-</span> be8__5,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">be8__8 =</span> <span class="dv">8</span> <span class="sc">-</span> be8__8,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">est10__3 =</span> <span class="dv">5</span> <span class="sc">-</span> est10__3,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">est10__5 =</span> <span class="dv">5</span> <span class="sc">-</span> est10__5,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">est10__7 =</span> <span class="dv">5</span> <span class="sc">-</span> est10__7,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">est10__10 =</span> <span class="dv">5</span> <span class="sc">-</span> est10__10,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">sou13__6 =</span> <span class="dv">6</span> <span class="sc">-</span> sou13__6,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">sou13__9 =</span> <span class="dv">6</span> <span class="sc">-</span> sou13__9,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot16__4 =</span> <span class="dv">8</span> <span class="sc">-</span> mot16__4,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot16__8 =</span> <span class="dv">8</span> <span class="sc">-</span> mot16__8,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot16__12 =</span> <span class="dv">8</span> <span class="sc">-</span> mot16__12,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot16__15 =</span> <span class="dv">8</span> <span class="sc">-</span> mot16__15,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot16__16 =</span> <span class="dv">8</span> <span class="sc">-</span> mot16__16)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Le code paraît fastidieux et potentiellement source d’erreurs. De plus, ce recodage s’accompagne d’une feuille annexe sur laquelle on a noté avec prudence les items en cause et la formule pour inverser les scores… On ne sait mieux faire…</p>
+</blockquote>
+<p>Ce procédé d’écrasement facilite l’analyse de la cohérence interne ou le calcul des scores par la suite (cf.&nbsp;chapitre <em>description</em>).</p>
+</section>
+<section id="calcul-du-score-de-chaque-questionnaire-par-observation" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="calcul-du-score-de-chaque-questionnaire-par-observation"><span class="header-section-number">2.2.5</span> calcul du score de chaque questionnaire par observation</h3>
+<p>La variable qui contient le score global de chaque questionnaire par participant·e porte l’extension *_sco* :</p>
+<blockquote class="blockquote">
+<p>Exemple : <code>mot13_sco</code> est la variable de score total de <code>mot13_1</code> à <code>mot13_13</code> avec les variables qui ont été inversées (sans conservation dans le df de l’item non-inversé).</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Recondage des variables au score inversé</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Création des moyennes de chaque questionnaire pour chaque observation</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> d_long <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hbs_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"hbs"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">pec_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"pec"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">be_sco  =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"be"</span>)) ,<span class="at">na.rm =</span>T),</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">est_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"est"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">cli_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"cli"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">sou_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"sou"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"hbs"</span>)),<span class="at">na.rm =</span>T))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>De nouveau, on ne crée pas d’objet intermédiaire sachant que R sait très bien nous permettre de vérifier le processus, étape par étape.</p>
+</blockquote>
+<p>Ce code paraît très efficace. Il se base sur notre nomenclature sans risque d’erreur, indépendamment du nombre de variable ou de la position des colonnes.</p>
+<blockquote class="blockquote">
+<p>On apprécie, même si on ne comprend pas encore à satisfaction la fonction ´select´et son fonctionnement.</p>
+</blockquote>
+</section>
+<section id="filtrage-des-observations" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="filtrage-des-observations"><span class="header-section-number">2.2.6</span> filtrage des observations</h3>
+<p>Ici, on a essayé de développer une technique pour ne garder que les <em>id</em> qui se retrouvent strictement au temps 1 et au temps 2.</p>
+<p>Les enjeux sont cruciaux :</p>
+<ul>
+<li>on doit s’assurer qu’un même <em>id</em> ne se retrouve pas plusieurs fois dans le même temps (un·e participant·e peut avoir rempli 2 fois le questionnaire du temps, p.ex.)</li>
+<li>on doit aussi s’assurer que nous ferons nos comparaisons temps 1 / temps 2 sur des données complètes</li>
+</ul>
+<p>C’est notre présomption de base. Il est dès lors important de filtrer les observations de manière stricte.</p>
+<p>Pour cela, nous avons :</p>
+<ul>
+<li>créé un df de comparaison pour pouvoir dire à R quoi sélectionner. Ce df va, en deux étapes, ne garder que (1) les <em>id</em> uniques dans chaque temps puis (2) constituant une paire (t1, t2).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>d_comp <span class="ot">&lt;-</span> d_long <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(id) <span class="sc">%&gt;%</span> <span class="co">#par sécurité, on supprime les lignes dont l'id est vide</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> <span class="co">#visuel uniquement</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, temps) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">==</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co">#On s'est assuré que chaque id est unique dans chaque modalité de temps. On doit encore être sûrs qu'on a maintenant exactement une paire (t1,t2). Donc on continue le processus que R réalise dans cet ordre.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n<span class="sc">==</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="co">#on ne garde que les paires de id qui se retrouvent dans t1 et t2. C'est notre grosse perte de données de ce traitement</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>On devrait vérifier la validité de cette méthode, sur le plan des bonnes pratiques stat, et aussi sur le plan du codage dans R…et aussi s’assurer qu’elle fonctionne bien comme on le pense en la mettant à l’épreuve.</p>
+</blockquote>
+<ul>
+<li>créé un nouveau df qui ne contient plus que les paires souhaitées</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Notre df de comparaison est prêt. On peut procéder à l'élagage de d_long.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>d_long_paired <span class="ot">&lt;-</span> d_long <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> d_comp<span class="sc">$</span>id) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group=</span><span class="fu">ifelse</span>(group<span class="sc">==</span><span class="st">"con"</span>, <span class="st">"contrôle"</span>,<span class="st">"expérimental"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>On a été un peu sauvé avec le logique <code>%in%</code> mais sans bien savoir pourquoi <code>==</code> ne convient pas. Dans l’example, on en a profité pour modifier les facteurs de la variable <code>group</code>. Les forums ne sont pas clairs sur la différence entre <code>ifelse</code>et <code>if_else</code>ou encore <code>case_when</code>. On doit clarifier cela.</p>
+</blockquote>
+</section>
+<section id="gestion-des-données-manquantes" class="level3" data-number="2.2.7">
+<h3 data-number="2.2.7" class="anchored" data-anchor-id="gestion-des-données-manquantes"><span class="header-section-number">2.2.7</span> gestion des données manquantes</h3>
+<blockquote class="blockquote">
+<p>pas encore de bonnes pratiques.</p>
+</blockquote>
+</section>
+<section id="gestion-des-données-extrêmes" class="level3" data-number="2.2.8">
+<h3 data-number="2.2.8" class="anchored" data-anchor-id="gestion-des-données-extrêmes"><span class="header-section-number">2.2.8</span> gestion des données extrêmes</h3>
+<blockquote class="blockquote">
+<p>pas encore de bonnes pratiques.</p>
+</blockquote>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01_environnement.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environnement de travail</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03_description.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Description des données</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

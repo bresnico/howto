@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Principes, procédures et tips pour traiter les données dans R - 1&nbsp; Environnement de travail</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02_preparation.html" rel="next">
+<link href="./intro.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Pas de résultats",
+    "search-matching-documents-text": "documents trouvés",
+    "search-copy-link-title": "Copier le lien vers la recherche",
+    "search-hide-matches-text": "Cacher les correspondances additionnelles",
+    "search-more-match-text": "correspondance de plus dans ce document",
+    "search-more-matches-text": "correspondances de plus dans ce document",
+    "search-clear-button-title": "Effacer",
+    "search-detached-cancel-button-title": "Annuler",
+    "search-submit-button-title": "Envoyer"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environnement de travail</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Principes, procédures et tips pour traiter les données dans R</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Préface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">Comment lire ce livre</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_environnement.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environnement de travail</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Préparation des données</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_description.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Description des données</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_rapport.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Rapport</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_etudes_de_cas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Etudes de cas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">Références</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table des matières</h2>
+   
+  <ul>
+  <li><a href="#github-et-structure-des-dossiers" id="toc-github-et-structure-des-dossiers" class="nav-link active" data-scroll-target="#github-et-structure-des-dossiers"><span class="toc-section-number">1.1</span>  GitHub et structure des dossiers</a></li>
+  <li><a href="#rédaction-du-code-et-grammaire" id="toc-rédaction-du-code-et-grammaire" class="nav-link" data-scroll-target="#rédaction-du-code-et-grammaire"><span class="toc-section-number">1.2</span>  Rédaction du code et grammaire</a></li>
+  <li><a href="#rstudio-et-packages" id="toc-rstudio-et-packages" class="nav-link" data-scroll-target="#rstudio-et-packages"><span class="toc-section-number">1.3</span>  RStudio et packages</a></li>
+  <li><a href="#sublime-text-et-packages" id="toc-sublime-text-et-packages" class="nav-link" data-scroll-target="#sublime-text-et-packages"><span class="toc-section-number">1.4</span>  Sublime Text et Packages</a></li>
+  <li><a href="#scrivener-3-zotero-betterbibtext---rédaction-darticles-longs" id="toc-scrivener-3-zotero-betterbibtext---rédaction-darticles-longs" class="nav-link" data-scroll-target="#scrivener-3-zotero-betterbibtext---rédaction-darticles-longs"><span class="toc-section-number">1.5</span>  Scrivener 3 + Zotero + BetterBibText - Rédaction d’articles longs</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Environnement de travail</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Notre configuration de travail implique:</p>
+<ul>
+<li><em>GitHub</em> qui agit comme lieu principal de <strong>stockage</strong>, de <strong>communication</strong> de codes ou/et résultats, de <strong>versioning</strong>.</li>
+<li><em>RStudio</em> dont le fonctionnement avec <code>bookdown</code> est particulièrement appréciable</li>
+<li><em>Sublime Text</em> qui doit être mieux connue mais permet de travailler sur des bouts de code avec une syntaxe couleurs et facilite ainsi le <em>copier/coller</em> d’anciens projets vers de nouveaux.</li>
+</ul>
+<section id="github-et-structure-des-dossiers" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="github-et-structure-des-dossiers"><span class="header-section-number">1.1</span> GitHub et structure des dossiers</h2>
+<!-- explication, avantages, inconvénients 
+
+reprendre le démarrage de projets depuis le site de Silvia -->
+<p>On dispose d’un compte chez <em>GitHub</em>. Le compte est lié à 3 machines (2 macs et un pc). Le <em>commit</em> et le <em>push</em> se réalisent depuis RStudio directement. Sur chaque machine, on s’offre tout de même une solution <em>user friendly</em> avec <em>GitHub Desktop</em>.</p>
+<p>Sur chaque machine, on dispose d’une structure des dossiers de type <em>Documents &gt; GitHub &gt; r-projects</em> (attention à la casse).</p>
+<p>Le dossier <em>r-projects</em> contient autant de sous-dossiers que de projets à analyser.</p>
+<p>Chaque sous-dossier a un nom structuré ainsi (attention à la casse) : <em>contexteannée_initialesauteurprincipal</em> (par exemple : <em>dupp2019_cr</em> ou <em>crips2019_lv</em>).</p>
+<p>Dans chaque sous-dossier:</p>
+<ul>
+<li>un fichier <em>Rproj</em> est disponible et il porte le nom du sous-dossier</li>
+<li>un fichier présentant les données brutes (raw) est disponible (en lecture seule de préférence) et il porte un titre de la forme <em>nomsousdossier_raw</em>. Il peut être en format <em>.csv</em> ou <em>.xlsx</em>. Si les données brutes sont sur plusieurs fichiers (dans le cas de plusieurs temps de mesure, par exemple, on les distingue avec l’ajout *_t1*, …)</li>
+<li>un fichier de script <em>.R</em> intitulé <em>nomsousdossier_script</em></li>
+<li>un fichier Rmarkdown <em>.Rmd</em> intitulé <em>nomsousdossier_rapport</em> et rédigé en parallèle du script. Ce rapport général appelle le script pour réaliser les sorties.</li>
+</ul>
+<blockquote class="blockquote">
+<p>On ne s’est pas encore déterminé sur les bonnes pratiques pour la constitution du rapport en RMarkdown : Est-ce OK et satisfaisant de “simplement” rappeler le script et uniquement “afficher” les objets ?</p>
+</blockquote>
+<ul>
+<li>les sorties de type <em>HTML</em>, <em>PDF</em>, ou image (<em>png</em>, <em>svg</em>, …) n’obéissent pas à des règles précises.</li>
+<li>plusieurs rapports peuvent coexister en fonction des destinataires ; ils sont tous une adaptation du rapport “master” décrit plus haut.</li>
+</ul>
+<p>L’intérêt est d’avoir à tout moment sur GitHub une vision claire des modifications réalisées à travers les différentes étapes de mise à jour des fichier (traçabilité de la démarche). De plus, une attention particulière est accordée à l’écriture d’un code avec une grammaire (le plus possible) conventionnelle qui est lisible et commenté, que ce soit dans le script ou dans le rapport en RMarkdown.</p>
+<p>Le script et le rapport se rédigent en parallèle.</p>
+</section>
+<section id="rédaction-du-code-et-grammaire" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="rédaction-du-code-et-grammaire"><span class="header-section-number">1.2</span> Rédaction du code et grammaire</h2>
+<p>Le code suivant est, à notre sens, un exemple de bonne pratique car :</p>
+<ul>
+<li>des titres mis en évidence structurent le code</li>
+<li>les commentaires sont présents; ils se veulent précis et concis</li>
+<li>des espaces facilitent la lecture</li>
+<li>le code n’est pas <em>- à notre connaissance -</em> inutilement répétitif</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">###############</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#visualisation#</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">###############</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#score échelle HBSC</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>vis_hbs <span class="ot">&lt;-</span> d_long_paired <span class="sc">%&gt;%</span> </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> temps, <span class="at">color =</span> group, <span class="at">y =</span> hbs_sco) <span class="sc">+</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">alpha =</span> .<span class="dv">5</span>, <span class="at">position =</span> <span class="fu">position_jitterdodge</span>(<span class="at">dodge.width=</span>.<span class="dv">7</span>, <span class="at">jitter.width =</span> .<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="fu">aes</span>(<span class="at">group =</span> group), <span class="at">geom =</span> <span class="st">"line"</span>) <span class="sc">+</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mesure des CPS"</span>, <span class="at">y =</span> <span class="st">"Score au HBSC"</span>) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="st">"Groupe"</span>, <span class="at">palette =</span> <span class="st">"Set1"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Un autre exemple illustre cette grammaire. On rajoute quelques espaces pour faciliter la lecture et repérer les structures <em>- parfois nécessairement -</em> répétitives :</p>
+<blockquote class="blockquote">
+<p>On aimerait toutefois savoir comment éviter ces répétitions. Notamment quand on génère 10 graphiques qui ne varient, dans le code, qu’au niveau de l’axe Y et le titre, par exemple.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Création des moyennes de chaque questionnaire pour chaque observation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> d_long <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">hbs_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"hbs"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">pec_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"pec"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">be_sco  =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"be"</span>)) ,<span class="at">na.rm =</span>T),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">est_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"est"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">cli_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"cli"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sou_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"sou"</span>)),<span class="at">na.rm =</span>T),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">mot_sco =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(.,<span class="fu">starts_with</span>(<span class="st">"hbs"</span>)),<span class="at">na.rm =</span>T))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Une source pour la grammaire du codage peut être consultée à l’adresse :</strong> https://www.inwt-statistics.com/read-blog/inwts-guidelines-for-r-code.html</p>
+</section>
+<section id="rstudio-et-packages" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="rstudio-et-packages"><span class="header-section-number">1.3</span> RStudio et packages</h2>
+<p>On dispose en l’état de la version 4.0.2 de R ainsi que de la version 1.3.959 de RStudio.</p>
+<p>Sur les macs, différents ajouts comme Xquartz ou des modules liés à LaTeX sont également installés.</p>
+<blockquote class="blockquote">
+<p>Mais honnêtement, on a perdu de vue leur rôle plus ou moins nécessaire sachant que LaTeX est certes nécessaire pour les sorties PDF sans que toutes les extensions liées à LaTex le soient… Ce sera à clarifier au prochain clean install.</p>
+</blockquote>
+<p>Pour la version PC, on a installé tinyTEX ‘tinytex::install_tinytex()’ directement ‘TinyTeX to C:/Users/nbr/AppData/Roaming/TinyTeX’ depuis la console. On rappelle que <code>LaTeX</code> est nécessaire à la génération de <em>PDF</em>.</p>
+<p>Dans R, les packages suivants sont installés:</p>
+<ul>
+<li><code>tidyverse</code>, suite de packages pour travailler de manière <em>tidy</em> (bien rangé) : <code>ggplot2</code>, <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>purrr</code>, <code>tibble</code>, <code>stringr</code>, <code>forcats</code>.</li>
+<li><code>readxl</code>, permet de lire et importer les fichiers .xlsx.</li>
+<li><code>bookdown</code>, permet de réaliser à peu de frais le présent livre</li>
+</ul>
+<p>En principe, pour des raisons d’élégance du code, on cherche à limiter la sur-installation de nouveaux packages. Il s’agit d’explorer ce que les packages installés ont à offrir avant de courir sur d’autres fonctions vues sur le web.</p>
+</section>
+<section id="sublime-text-et-packages" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sublime-text-et-packages"><span class="header-section-number">1.4</span> Sublime Text et Packages</h2>
+<p>L’utilisation de Sublime Tex est ergonomique. Les packages du logiciel permettent de travailler comme R Studio, avec toutefois un environnement plus aéré et propice à la rédaction avec des codes couleurs agréables. Il est complémentaire à RStudio mais peut carrément le remplacer pour certaines courtes étapes de rédaction.</p>
+<p>Les packages installés sont:</p>
+<ul>
+<li>sur PC : R-Box, R-IDE, LSP</li>
+<li>sur MAC : R-Box, SendCode</li>
+</ul>
+<blockquote class="blockquote">
+<p>On doit encore clarifier comment lier sur PC et MAC GitHub. Mais ce n’est pas prioritaire. GitHub sur Sublime Text ? Emmet, git, sublime github. https://gist.github.com/KedrikG/f7b955dc371b1204ec76ce862e2dcd2e</p>
+</blockquote>
+</section>
+<section id="scrivener-3-zotero-betterbibtext---rédaction-darticles-longs" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="scrivener-3-zotero-betterbibtext---rédaction-darticles-longs"><span class="header-section-number">1.5</span> Scrivener 3 + Zotero + BetterBibText - Rédaction d’articles longs</h2>
+<p>On doit déterminer comment travailler en <code>RMarkdown</code> pour des articles longs via <code>Scrivener 3</code>. Ce logiciel a l’avantage de facilement découper l’article en plusieurs zones de travail et <em>fusionner</em> le tout à l’export. De plus, on peut lier dynamiquement la rédaction à Zotero via un fichier <code>Bibtex</code> ce qui est très intéressant.</p>
+<p>On pense aussi à rassembler les éléments rédigés dans Scrivener et compiler le tout avec <code>Bookdown</code> sous R.</p>
+<p>Un hypothétique *workflow” serait : script dans R &gt; ébauche de rapport dans R (RMarkdown) &gt; copier/coller de l’ébauche de rapport dans Scrivener &gt; rédaction dans Scrivener en compatibilité avec <code>Bookdown</code> &gt; export de Scrivener dans R &gt; préparation de la sortie avec <code>Bookdown</code>.</p>
+<p>Mais ce n’est pas optimal. Notre souhait est de pouvoir, p.ex., modifier une donnée dans la source des données (le fichier brut) et cliquer sur un (voire deux) boutons pour mettre à jour l’article final ! On n’y est pas encore !!</p>
+<p>L’organisation de la rédaction est un gros chantier qui n’est pas du tout structuré en l’état.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copié");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copié");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./intro.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Comment lire ce livre</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02_preparation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Préparation des données</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

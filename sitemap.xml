@@ -2,22 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://howto.nicolasbressoud.ch/index.html</loc>
-    <lastmod>2022-11-19T07:47:46.249Z</lastmod>
+    <lastmod>2022-11-19T08:20:40.514Z</lastmod>
   </url>
   <url>
     <loc>https://howto.nicolasbressoud.ch/intro.html</loc>
-    <lastmod>2022-11-19T07:47:46.249Z</lastmod>
+    <lastmod>2022-11-19T08:20:40.514Z</lastmod>
   </url>
   <url>
-    <loc>https://howto.nicolasbressoud.ch/summary.html</loc>
-    <lastmod>2022-11-19T07:47:46.250Z</lastmod>
+    <loc>https://howto.nicolasbressoud.ch/01_environnement.html</loc>
+    <lastmod>2022-11-19T08:20:40.514Z</lastmod>
+  </url>
+  <url>
+    <loc>https://howto.nicolasbressoud.ch/02_preparation.html</loc>
+    <lastmod>2022-11-19T08:20:40.515Z</lastmod>
+  </url>
+  <url>
+    <loc>https://howto.nicolasbressoud.ch/03_description.html</loc>
+    <lastmod>2022-11-19T08:20:40.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://howto.nicolasbressoud.ch/04_rapport.html</loc>
+    <lastmod>2022-11-19T08:20:40.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://howto.nicolasbressoud.ch/05_etudes_de_cas.html</loc>
+    <lastmod>2022-11-19T08:20:40.516Z</lastmod>
   </url>
   <url>
     <loc>https://howto.nicolasbressoud.ch/references.html</loc>
-    <lastmod>2022-11-19T07:47:46.250Z</lastmod>
+    <lastmod>2022-11-19T08:20:40.517Z</lastmod>
   </url>
   <url>
-    <loc>https://howto.nicolasbressoud.ch/howto.pdf</loc>
-    <lastmod>2022-11-19T07:47:46.145Z</lastmod>
+    <loc>https://howto.nicolasbressoud.ch/Principes,-procédures-et-tips-pour-traiter-les-données-dans-R.pdf</loc>
+    <lastmod>2022-11-19T08:20:40.460Z</lastmod>
   </url>
 </urlset>
