@@ -2,6 +2,7 @@ project:
   type: book
 
 book:
+  site-url: "https://howto.nicolasbressoud.ch"
   title: "howto"
   author: "Jane Doe"
   date: "19.11.2022"
